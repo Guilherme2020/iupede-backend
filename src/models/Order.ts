@@ -11,6 +11,7 @@ import {
 import User from './User';
 import OrdersProducts from './OrdersProducts';
 import Attendance from './Attendances';
+import Desks from './Desks';
 
 @Entity('orders')
 class Order {
@@ -24,6 +25,10 @@ class Order {
     @ManyToOne(() => Attendance)
     @JoinColumn({ name: 'attendance_id' })
     attendance: Attendance;
+
+    @ManyToOne(() => Desks)
+    @JoinColumn({ name: 'desks_id' })
+    desks: Desks;
 
     @OneToMany(() => OrdersProducts, order_products => order_products.order, {
         cascade: true,

@@ -7,7 +7,9 @@ import {
     JoinColumn,
     ManyToOne,
 } from 'typeorm';
+import Stores from './Stores';
 import EmployeesTypes from './EmployeeTypes';
+import Companies from './Companies';
 
 @Entity('employees')
 class Employees {
@@ -22,7 +24,15 @@ class Employees {
 
     @ManyToOne(() => EmployeesTypes)
     @JoinColumn({ name: 'employee_id' })
-    employeType: EmployeesTypes;
+    employesType: EmployeesTypes;
+
+    @ManyToOne(() => Stores)
+    @JoinColumn({ name: 'stores_id' })
+    stores: Stores;
+
+    @ManyToOne(() => Companies)
+    @JoinColumn({ name: 'companies_id' })
+    companies: Companies;
 
     @CreateDateColumn()
     created_at: Date;

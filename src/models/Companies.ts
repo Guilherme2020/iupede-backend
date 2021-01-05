@@ -4,7 +4,6 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-    ManyToOne,
     OneToMany,
 } from 'typeorm';
 
@@ -25,8 +24,10 @@ class Companies {
     @Column()
     cnpj: string;
 
-    @ManyToOne(() => Product, (product: Product) => product.companies)
-    product: Product;
+    // @ManyToOne(() => Product, (product: Product) => product.companies)
+    // product: Product;
+    @OneToMany(() => Product, product_companie => product_companie.companies_id)
+    products: Product[];
 
     @OneToMany(() => Stores, stores_companie => stores_companie.companies)
     stores: Stores[];

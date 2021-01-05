@@ -4,32 +4,34 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-    ManyToOne,
+    OneToOne,
     JoinColumn,
 } from 'typeorm';
-
 import Companies from './Companies';
 import Stores from './Stores';
 
-@Entity('desks')
-class Desks {
+@Entity('administrators')
+class Administrators {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column()
-    description: string;
+    level: string;
 
     @Column()
-    number: number;
+    name: string;
 
     @Column()
-    status: string;
+    login: string;
 
-    @ManyToOne(() => Stores)
+    @Column()
+    password: string;
+
+    @OneToOne(() => Stores)
     @JoinColumn({ name: 'stores_id' })
     stores: Stores;
 
-    @ManyToOne(() => Companies)
+    @OneToOne(() => Companies)
     @JoinColumn({ name: 'companies_id' })
     companies: Companies;
 
@@ -40,4 +42,4 @@ class Desks {
     updated_at: Date;
 }
 
-export default Desks;
+export default Administrators;

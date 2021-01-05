@@ -11,7 +11,7 @@ interface Request {
 class ShowUserService {
     public async execute({ user_id }: Request): Promise<User> {
         const usersRepository = getCustomRepository(UsersRepository);
-        const user = await usersRepository.findById(user_id);
+        const user = await usersRepository.findOne(user_id);
 
         if (!user) {
             throw new AppError('User not found.');
